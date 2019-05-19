@@ -9,9 +9,10 @@ sieve n =  runSTArray $
               writeArray arr 1 False
               mapM_ (\i -> writeArray arr i False) [4, 6 .. n]
               mapM_ (\i -> readArray arr i >>= 
-                           (flip when) (mapM_ (\j -> (writeArray arr j False))
-                                              [i * i, i * (i + 2) .. n])) 
-                    [3, 5 .. sqn]
+                           flip when (mapM_ (\j -> writeArray arr j False)
+                                            [i * i, i * (i + 2) .. n])) 
+                    [3, 5 .. n]
+                    --[3, 5 .. sqn]
               return arr
-              where sqn = (fromIntegral . ceiling . sqrt) n
+--              where sqn = (fromIntegral . ceiling . sqrt) n
 
