@@ -3,8 +3,13 @@ version:             0.1.0.0
 github:              "Tatsuki-I/Practice-Haskell"
 license:             BSD3
 author:              "Tatsuki-I"
+<<<<<<< HEAD
 maintainer:          "titanium.infotech@gmail.com"
 copyright:           "Tatsuki-I"
+=======
+maintainer:          "tatsuki.devel@gmail.com"
+copyright:           "2019 Tatsuki-I"
+>>>>>>> 44202ca533f2afe3c71d0206a6f1a49262c2d336
 
 extra-source-files:
 - README.md
@@ -12,7 +17,11 @@ extra-source-files:
 
 # Metadata used when publishing your package
 # synopsis:            Short description of your package
+<<<<<<< HEAD
 # category:            Web
+=======
+# category:            Development
+>>>>>>> 44202ca533f2afe3c71d0206a6f1a49262c2d336
 
 # To avoid duplicated efforts in documentation and dealing with the
 # complications of embedding Haddock markup inside cabal files, it is
@@ -21,13 +30,20 @@ description:         Please see the README on GitHub at <https://github.com/Tats
 
 dependencies:
 - base >= 4.7 && < 5
+<<<<<<< HEAD
 - array
+=======
+>>>>>>> 44202ca533f2afe3c71d0206a6f1a49262c2d336
 
 library:
   source-dirs: src
 
 executables:
+<<<<<<< HEAD
   Practice-Haskell:
+=======
+  Practice-Haskell-exe:
+>>>>>>> 44202ca533f2afe3c71d0206a6f1a49262c2d336
     main:                Main.hs
     source-dirs:         app
     ghc-options:
