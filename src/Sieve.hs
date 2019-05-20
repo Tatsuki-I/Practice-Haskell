@@ -4,7 +4,7 @@ import Data.Array.ST
 import Data.Array
 import Control.Monad
 
-sieve               :: (Integral a, Ix a) => a -> [a]
+sieve           :: (Integral a, Ix a) => a -> [a]
 sieve n
     | n < 2     =  []
     | otherwise =  map fst . filter snd . (drop 2 . assocs) $ runSTArray $
