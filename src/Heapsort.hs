@@ -28,10 +28,10 @@ push x (Leaf e)       =  case e of
                                              (Leaf Nothing)
                               Nothing        -> Leaf (Just x)
 
-toList (Leaf e)      =  case e of
-                             Just n  -> [n]
-                             Nothing -> []
-toList  (Node l e r) =  toList l  ++ e : toList r
+toList (Leaf e)     =  case e of
+                            Just n  -> [n]
+                            Nothing -> []
+toList (Node l e r) =  toList l  ++ e : toList r
 
 root (Node _ e _) = Just e
 root (Leaf l)     = l
