@@ -1,5 +1,8 @@
 module Heapsort where
 
+import Data.Maybe
+import Data.List
+
 data Heap a = Leaf (Maybe a) 
             | Node (Heap a) a (Heap a)
               deriving ( Show
@@ -25,7 +28,15 @@ push x (Leaf e)       =  case e of
                                              (Leaf Nothing)
                               Nothing        -> Leaf (Just x)
 
-toList (Leaf e)  = case e of
-                        Just n  -> [n]
-                        Nothing -> []
-toList  (Node l e r) = toList l ++ [e] ++ toList r
+toList (Leaf e)      =  case e of
+                             Just n  -> [n]
+                             Nothing -> []
+toList  (Node l e r) =  toList l  ++ e : toList r
+
+root (Node _ e _) = Just e
+root (Leaf l)     = l
+
+heapsort []       = []
+heapsort (x : []) = [x]
+heapsort xs       = rt : heapsort (delete rt xs)
+                    where rt = (fromJust . root . mkHeap) xs
