@@ -5,8 +5,8 @@ data Heap a = Leaf (Maybe a)
               deriving ( Show
                        , Eq)
 
-makeHeap :: (Foldable t, Ord a) => t a -> Heap a
-makeHeap =  foldr push (Leaf Nothing) 
+mkHeap :: (Foldable t, Ord a) => t a -> Heap a
+mkHeap =  foldr push (Leaf Nothing) 
 
 push                  :: Ord a => a -> Heap a -> Heap a
 push x h@(Node l e r) |  x < e     = if r == Leaf Nothing
@@ -19,11 +19,13 @@ push x h@(Node l e r) |  x < e     = if r == Leaf Nothing
                       |  otherwise = Node h 
                                           x
                                           (Leaf Nothing)
-
 push x (Leaf e)       =  case e of 
                               Just n -> Node (Leaf (Just (min n x)))
                                              (max n x)
                                              (Leaf Nothing)
                               Nothing        -> Leaf (Just x)
 
-
+toList (Leaf e)  = case e of
+                        Just n  -> [n]
+                        Nothing -> []
+toList  (Node l e r) = toList l ++ [e] ++ toList r
