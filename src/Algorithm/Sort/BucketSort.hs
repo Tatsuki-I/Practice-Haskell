@@ -1,4 +1,4 @@
-module Bucketsort where
+module Algorithm.Sort.BucketSort where
 
 import Data.Array.ST
 import Data.Array
@@ -11,4 +11,3 @@ bsort xs =  concatMap (\x -> replicate (snd x) (fst x)) .
                             writeArray bucket i)
                      xs
                return bucket
-
