@@ -23,6 +23,9 @@ dependencies:
 - base >= 4.7 && < 5
 - array
 - parallel
+- xorshift
+- mwc-random
+- vector
 
 library:
   source-dirs: src
@@ -31,6 +34,33 @@ executables:
   Practice-Haskell:
     main:                Main.hs
     source-dirs:         app
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - Practice-Haskell
+  ParallelQSort1: 
+    main:                Main.hs
+    source-dirs:         app/parallel/P1
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - Practice-Haskell
+  ParallelQSort2: 
+    main:                Main.hs
+    source-dirs:         app/parallel/P2
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - Practice-Haskell
+  SerialQSort: 
+    main:                Main.hs
+    source-dirs:         app/parallel/Serial
     ghc-options:
     - -threaded
     - -rtsopts
