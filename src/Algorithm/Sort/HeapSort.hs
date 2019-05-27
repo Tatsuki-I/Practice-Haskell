@@ -36,7 +36,7 @@ toList (Node l e r) =  toList l  ++ e : toList r
 root (Node _ e _) = Just e
 root (Leaf l)     = l
 
-heapsort []       = []
-heapsort (x : []) = [x]
-heapsort xs       = rt : heapsort (delete rt xs)
-                    where rt = (fromJust . root . mkHeap) xs
+heapsort []  = []
+heapsort [x] = [x]
+heapsort xs  = rt : heapsort (delete rt xs)
+               where rt = (fromJust . root . mkHeap) xs
