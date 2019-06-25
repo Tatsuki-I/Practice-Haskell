@@ -26,6 +26,7 @@ dependencies:
 - xorshift
 - mwc-random
 - vector
+- split
 
 library:
   source-dirs: src

@@ -6,12 +6,11 @@ import           Control.Monad.Fix
 
 selectionSort :: Ord a => [a] -> [a]
 selectionSort =  fix (((:) <$>  minimum <*>) . (. (delete =<< minimum)))
---selectionSort []   = []
---selectionSort = fix (liftM2 (:) minimum . (. (delete =<< minimum)))
 {-
+selectionSort []   = []
+selectionSort = fix (liftM2 (:) minimum . (. (delete =<< minimum)))
 selectionSort list = minX : selectionSort (delete minX list)
-    where
-        minX = minimum list
+                     where minX = minimum list
         -}
 
 separateMinimum      :: Ord a => [a] -> Maybe (a, [a])
