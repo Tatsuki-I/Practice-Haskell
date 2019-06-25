@@ -24,11 +24,9 @@ instance Show Root where
                                                           $ (group . factorisation) b
                                    (fs2, ts2) = partition (\xs -> length xs == a)
                                                           $ concatMap (chunksOf a) fs1
-
-factorisation   :: Integer -> [Integer]
-factorisation 1 =  []
-factorisation x =  v : factorisation (x `div` v)
-  where
-      v = factors x !! 1
-      factors :: Integer -> [Integer]
-      factors n = [x | x <- [1..n], n `mod` x == 0]
+                  factorisation   :: Integer -> [Integer]
+                  factorisation 1 =  []
+                  factorisation x =  v : factorisation (x `div` v)
+                                     where v = factors x !! 1
+                                           factors :: Integer -> [Integer]
+                                           factors n = [x | x <- [1..n], n `mod` x == 0]
