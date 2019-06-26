@@ -36,6 +36,20 @@ instance Num Root where
                                | r1 == r2  =  ((c1 + c2) :* r1) :+ rs
                                | otherwise =  rt1 :+ (f rs rt2)
 
+     _    * Zero     =  Zero
+     Zero * _        =  Zero
+     a    * (b :+ c) = (f a b) + a * c
+                       where f :: Root -> Root' -> Root
+                             f Zero z      =  Zero
+                             f (a :+ b) c  =  (g a c) + (f b c)
+                             g :: Root' -> Root' -> Root
+                             g (c1 :* (n1 :-/ r1))
+                               (c2 :* (n2 :-/ r2)) | n1 == n2 =  (n1 -/ (r1 *
+                                                                        (product $ replicate n1 c1) *
+                                                                        r2 *
+                                                                        (product $ replicate n1 c2)))
+
+
 --
 (-/)     :: Int -> Rational -> Root
 a -/ b =  (toRational n :* (a :-/ (nb % 1))) :+ Zero
@@ -57,14 +71,11 @@ _    `mul` Zero     =  Zero
 Zero `mul` _        =  Zero
 a    `mul` (b :+ c) = (f a b) + a `mul` c
                       where f :: Root -> Root' -> Root
-                            f Zero z      =  z :+ Zero
---                            f (rt1@(c1 :* (n1 :-/ r1)) :+ rs) rt2@(c2 :* (n2 :-/ r2))
---                              | r1 == r2  =  ((c1 + c2) :* r1) :+ rs
---                              | otherwise =  rt1 :+ (f rs rt2)
-
-g :: Root' -> Root' -> Root
-g (c1 :* (n1 :-/ r1))
-  (c2 :* (n2 :-/ r2)) | n1 == n2 =  (n1 -/ (r1 *
-                                           (product $ replicate n1 c1) *
-                                           r2 *
-                                           (product $ replicate n1 c2)))
+                            f Zero z      =  Zero
+                            f (a :+ b) c  =  (g a c) + (f b c)
+                            g :: Root' -> Root' -> Root
+                            g (c1 :* (n1 :-/ r1))
+                              (c2 :* (n2 :-/ r2)) | n1 == n2 =  (n1 -/ (r1 *
+                                                                       (product $ replicate n1 c1) *
+                                                                       r2 *
+                                                                       (product $ replicate n1 c2)))
