@@ -55,6 +55,15 @@ instance Num Root where
     negate Zero             = Zero
     negate ((c :* r) :+ rs) = ((- c) :* r) :+ negate rs
 
+    fromInteger a = 1 -/ toRational a
+
+    signum r | fr > 0    =   1
+             | fr < 0    = - 1
+             | otherwise =   0
+               where fr = toFloating r
+
+    abs r = r * signum r
+
 (-/)     :: Int -> Rational -> Root
 a -/ b =  (toRational n :* (na :-/ nb)) :+ Zero
           where b' = numerator b
@@ -72,4 +81,9 @@ a -/ b =  (toRational n :* (na :-/ nb)) :+ Zero
                                    where v = factors x !! 1
                                          factors :: Integer -> [Integer]
                                          factors n = [x | x <- [1..n], n `mod` x == 0]
+
+toFloating :: Floating a => Root -> a
+toFloating                     Zero = 0
+toFloating ((c :* (n :-/ r)) :+ rs) = (fromRational c * (fromIntegral r ** fromRational (1 % fromIntegral n))) + toFloating rs
+
 
