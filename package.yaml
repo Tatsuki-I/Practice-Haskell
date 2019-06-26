@@ -26,6 +26,7 @@ dependencies:
 - xorshift
 - mwc-random
 - vector
+- repa
 
 library:
   source-dirs: src
@@ -40,7 +41,7 @@ executables:
     - -with-rtsopts=-N
     dependencies:
     - Practice-Haskell
-  ParallelQSort1: 
+  ParallelQSort1:
     main:                Main.hs
     source-dirs:         app/parallel/P1
     ghc-options:
@@ -49,7 +50,7 @@ executables:
     - -with-rtsopts=-N
     dependencies:
     - Practice-Haskell
-  ParallelQSort2: 
+  ParallelQSort2:
     main:                Main.hs
     source-dirs:         app/parallel/P2
     ghc-options:
@@ -58,7 +59,7 @@ executables:
     - -with-rtsopts=-N
     dependencies:
     - Practice-Haskell
-  SerialQSort: 
+  SerialQSort:
     main:                Main.hs
     source-dirs:         app/parallel/Serial
     ghc-options:
