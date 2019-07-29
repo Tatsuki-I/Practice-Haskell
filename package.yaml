@@ -27,7 +27,9 @@ dependencies:
 - mwc-random
 - vector
 - repa
+- repa-algorithms
 - split
+- random
 
 library:
   source-dirs: src
